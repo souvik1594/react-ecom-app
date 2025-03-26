@@ -1,13 +1,15 @@
 import React from "react";
+import FilterBar from "./filterBar/FilterBar";
+import Body from "./body/Body";
 
 function Home() {
   return (
-    <div>
-      Home
-      <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
-        Responsive
-      </button>
-    </div>
+    <>
+      <div className="flex">
+        <FilterBar></FilterBar>
+        <Body></Body>
+      </div>
+    </>
   );
 }
 
