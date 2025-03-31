@@ -11,10 +11,9 @@ const CartContextProvider = ({ children }) => {
       productName: faker.commerce.productName(),
       description: faker.commerce.productDescription(),
       price: faker.commerce.price({ min: 100, max: 5000 }),
-      image: faker.image.urlLoremFlickr({
+      image: faker.image.urlPicsumPhotos({
         width: 300,
         height: 300,
-        category: "electronics",
       }),
       inStock: faker.helpers.arrayElement([0, 5, 10, 15, 20, 30, 40, 50]),
       fastDelivery: faker.datatype.boolean(),

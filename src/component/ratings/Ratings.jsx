@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Ratings = () => {
+const Ratings = ({ defaultRating = 1, isEditable = false, onRatingChange }) => {
   const stars = [1, 2, 3, 4, 5];
-  const [selectedRating, setSelectedRating] = useState(1);
+  const [selectedRating, setSelectedRating] = useState(defaultRating);
+
+  useEffect(() => {
+    onRatingChange(selectedRating);
+  }, [selectedRating]);
   return (
     <div>
-      <div className="rating flex-row">
+      <div
+        className={`rating flex-row ${isEditable ? "" : "pointer-events-none"}`}
+      >
         {stars.map((star) => {
           return star <= selectedRating ? (
             <input

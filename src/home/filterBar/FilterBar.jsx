@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Ratings from "../../component/ratings/Ratings";
 
 function FilterBar() {
+  const [Filter, setFilter] = useState({
+    ascending: false,
+    descending: false,
+    includeOutOfStock: false,
+    fastDelivery: false,
+    ratings: 1,
+    price: 20,
+  });
+
+  const handlerInputChange = (e) => {
+    const { name, value } = e.target;
+    setFilter({ ...Filter, [name]: value });
+  };
+
+  console.log(Filter);
+
   return (
     <div className="mt-2 border-r border-r-white/10 min-h-screen w-full max-w-xs p-6">
       <div className="form-control">
@@ -41,8 +57,31 @@ function FilterBar() {
       </div>
       <div className="h-[1px] bg-white/20 w-full my-6"></div>
       <p>Ratings</p>
-      <Ratings></Ratings>
+      <Ratings
+        defaultRating={Filter.ratings}
+        isEditable={true}
+        onRatingChange={(rating) => {
+          setFilter({ ...Filter, ratings: rating });
+        }}
+      ></Ratings>
       <div className="h-[1px] bg-white/20 w-full my-6"></div>
+
+      <div className="flex flex-col gap-3">
+        <strong>Price : INR {Filter.price}</strong>
+        <input
+          name="price"
+          type="range"
+          min={0}
+          max="100000"
+          value={Filter.price}
+          className="range range-primary"
+          onChange={handlerInputChange}
+        />
+      </div>
+
+      <div className="pt-4">
+        <button className="btn btn-primary w-full">Clear Filters</button>
+      </div>
     </div>
   );
 }
