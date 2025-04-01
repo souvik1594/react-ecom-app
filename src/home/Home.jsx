@@ -6,7 +6,10 @@ function Home() {
   return (
     <>
       <div className="flex">
-        <FilterBar></FilterBar>
+        <div className="hidden lg:block">
+          <FilterBar></FilterBar>
+        </div>
+
         <Body></Body>
       </div>
     </>

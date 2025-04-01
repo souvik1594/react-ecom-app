@@ -19,7 +19,7 @@ function FilterBar() {
   console.log(Filter);
 
   return (
-    <div className="mt-2 border-r border-r-white/10 min-h-screen w-full max-w-xs p-6">
+    <div className="mt-2 border-r border-r-white/10 w-full max-w-xs p-6 sticky top-[4.5rem] h-screen">
       <div className="form-control">
         <label className="label cursor-pointer flex justify-between">
           <span className="label-text">Ascending</span>

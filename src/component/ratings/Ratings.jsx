@@ -19,7 +19,7 @@ const Ratings = ({ defaultRating = 1, isEditable = false, onRatingChange }) => {
               className="mask mask-star-2 bg-orange-600"
               key={star}
               onClick={() => setSelectedRating(star)}
-              checked="true"
+              defaultChecked="true"
             />
           ) : (
             <input

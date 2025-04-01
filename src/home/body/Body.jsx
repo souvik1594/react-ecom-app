@@ -6,7 +6,7 @@ const Body = () => {
   const { products } = useCartContext();
 
   return (
-    <div className="flex flex-wrap gap-4 m-4">
+    <div className="flex flex-wrap gap-4 m-4 justify-center">
       {products.map((product) => {
         return (
           <ProductCard key={product.id} productDetails={product}></ProductCard>

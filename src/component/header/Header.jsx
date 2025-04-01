@@ -1,10 +1,42 @@
 import React from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import FilterBar from "../../home/filterBar/FilterBar";
 
 function Header() {
   return (
-    <div className="navbar bg-base-100 shadow-sm border-b border-b-white/10">
+    <div className="navbar bg-base-100 shadow-sm border-b border-b-white/10 sticky top-0 z-[100]">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Store</a>
+        <div className="flex flex-row justify-start items-center">
+          <div className="drawer w-fit lg:hidden block">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              {/* Page content here */}
+              <label htmlFor="my-drawer">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn m-1 border border-white/10"
+                >
+                  <GiHamburgerMenu className="text-2xl" />
+                </div>
+              </label>
+            </div>
+            <div className="drawer-side">
+              <label
+                htmlFor="my-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                {/* Sidebar content here */}
+                <FilterBar />
+              </ul>
+            </div>
+          </div>
+          <div>
+            <a className="btn btn-ghost text-xl">Store</a>
+          </div>
+        </div>
       </div>
       <div className="flex gap-5">
         <input
