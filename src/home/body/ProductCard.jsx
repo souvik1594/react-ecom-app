@@ -1,8 +1,26 @@
 import React from "react";
 import { BsLightning } from "react-icons/bs";
 import Ratings from "../../component/ratings/Ratings";
+import { useCartContext } from "../../context/cartContext/CartContext";
 
 const ProductCard = ({ productDetails }) => {
+  const {
+    state: { cart },
+    dispatch,
+  } = useCartContext();
+
+  const handleAddToCart = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: productDetails,
+    });
+  };
+  const handleRemoveFromCart = (productId) => {
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: productId,
+    });
+  };
   return (
     <div className="card bg-base-100 w-80 shadow-sm border-2 border-gray-700">
       <figure>
@@ -52,12 +70,24 @@ const ProductCard = ({ productDetails }) => {
         </div>
 
         <div className="card-actions justify-between mt-5">
-          <button
-            className="btn btn-outline btn-primary"
-            disabled={productDetails.inStock === 0}
-          >
-            Add to Cart
-          </button>
+          {cart.some((item) => item.id === productDetails.id) ? (
+            <button
+              className="btn btn-outline btn-error"
+              disabled={productDetails.inStock === 0}
+              onClick={() => handleRemoveFromCart(productDetails.id)}
+            >
+              Remove from Cart
+            </button>
+          ) : (
+            <button
+              className="btn btn-outline btn-primary"
+              disabled={productDetails.inStock === 0}
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </button>
+          )}
+
           <button
             className="btn btn-outline btn-primary"
             disabled={productDetails.inStock === 0}
